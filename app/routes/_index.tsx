@@ -34,7 +34,7 @@ export default function Index() {
   return (
     <div className="w-full h-screen flex flex-col justify-center items-center bg-gray-100 p-6">
       <div className="p-6 bg-white shadow-md rounded-lg w-96 flex flex-col gap-4">
-        <h1 className="text-xl font-semibold text-center text-gray-800">Percentage Calculator</h1>
+        <h1 className="text-xl font-semibold text-center text-gray-800"> Calculator</h1>
 
         {fields.map((field) => (
           <Field key={field.id} onTotalChange={(total) => updateTotal(field.id, total)} reset={resetFields} />
