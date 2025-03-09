@@ -33,7 +33,7 @@ const Field: React.FC<FieldProps> = ({ onTotalChange, reset }) => {
         value={number}
         onChange={(e) => setNumber(e.target.value === "" ? 0 : parseFloat(e.target.value))}
       />
-      <span className="text-lg text-gray-800 dark:text-gray-300">×</span>
+      <span className="text-lg text-gray-800 dark:text-gray-400">×</span>
       <input
         type="text"
         className="w-16 p-2 border rounded-md focus:ring-2 focus:ring-blue-300 bg-white dark:bg-gray-700 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition duration-300"
@@ -41,7 +41,7 @@ const Field: React.FC<FieldProps> = ({ onTotalChange, reset }) => {
         value={percentage}
         onChange={(e) => setPercentage(e.target.value === "" ? 0 : parseFloat(e.target.value))}
       />
-      <span className="text-lg text-gray-800 dark:text-gray-300">%</span>
+      <span className="text-lg text-gray-800 dark:text-gray-400">%</span>
       <span className="text-green-600 dark:text-green-400 font-semibold ml-2">= {total.toFixed(1)}</span>
     </div>
   );
