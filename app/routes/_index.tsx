@@ -7,8 +7,8 @@ import Footer from "~/component/Footer";
 
 export default function Index() {
   const [fields, setFields] = useState([{ id: 0, total: 0 }]);
-  const [finalTotal, setFinalTotal] = useState(0);
   const [darkMode, setDarkMode] = useState(false);
+  const [finalTotal,setFinalTotal]= useState<Number>(0)
   const [resetFields, setResetFields] = useState(false);
   const [dragPositions, setDragPositions] = useState<{ [key: number]: number }>({});
   const [showDelete, setShowDelete] = useState<{ [key: number]: boolean }>({});
@@ -44,10 +44,15 @@ export default function Index() {
     );
   };
 
+  // Calculate Final Total
   const calculateFinalTotal = () => {
+    console.log("Current fields:", fields); // Debugging
     const sum = fields.reduce((acc, field) => acc + field.total, 0);
+  
+    console.log("Calculated Sum:", sum); // Debugging
     setFinalTotal(Math.round(sum * 10) / 10);
   };
+  
 
   const clearFields = useCallback(() => {
     setFields([{ id: 0, total: 0 }]);
@@ -101,8 +106,8 @@ export default function Index() {
               }}
             >
               {/* Drag Handle - Users can grab this to drag */}
-              <div className="w-full cursor-grab drag-handle p-3 rounded-lg shadow-sm transition duration-300">
-                <Field onTotalChange={() => {}} reset={resetFields} />
+              <div className="w-full cursor-grab drag-handle p-3 rounded-lg text-black shadow-sm transition duration-300">
+                <Field onTotalChange={(total) => updateTotal(field.id, total)} reset={resetFields} />
               </div>
             </Draggable>
           </div>

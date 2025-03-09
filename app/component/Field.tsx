@@ -48,3 +48,14 @@ const Field: React.FC<FieldProps> = ({ onTotalChange, reset }) => {
 };
 
 export default Field;
+
+
+
+
+//  const [fields, setFields] = useState([{ id: 0, total: 0 }]);
+
+  // // Calculate Final Total
+  // const calculateFinalTotal = () => {
+  //   const sum = fields.reduce((acc, field) => acc + field.total, 0);
+  //   setFinalTotal(Math.round(sum * 10) / 10);
+  // };
