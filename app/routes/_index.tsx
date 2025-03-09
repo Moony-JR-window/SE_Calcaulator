@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { RiMoonFill, RiSunFill } from "react-icons/ri";
+import { RiMoonFill, RiSunFill, RiDeleteBin6Line } from "react-icons/ri";
 import Field from "~/component/Field";
 import Footer from "~/component/Footer";
 
@@ -30,6 +30,13 @@ export default function Index() {
   // Add New Field
   const addNewField = () => {
     setFields([...fields, { id: fields.length, total: 0 }]);
+  };
+
+  // Delete Field
+  const deleteField = (id: number) => {
+    if (fields.length > 1) {
+      setFields(fields.filter((field) => field.id !== id));
+    }
   };
 
   // Update total for each field
@@ -76,11 +83,20 @@ export default function Index() {
         <h1 className="text-xl font-semibold text-center">Calculator</h1>
 
         {fields.map((field) => (
-          <Field
-            key={field.id}
-            onTotalChange={(total) => updateTotal(field.id, total)}
-            reset={resetFields}
-          />
+          <div key={field.id} className="flex items-center gap-2">
+            <Field
+              onTotalChange={(total) => updateTotal(field.id, total)}
+              reset={resetFields}
+            />
+            {fields.length > 1 && (
+              <button
+                onClick={() => deleteField(field.id)}
+                className="pl-2 text-red-500 hover:text-red-700 transition duration-300"
+              >
+                <RiDeleteBin6Line size={20} />
+              </button>
+            )}
+          </div>
         ))}
 
         <button
