@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+'use client'
+import { useState } from "react";
 import Field from "~/component/Field";
+import Footer from "~/component/Footer";
 
 export default function Index() {
   const [fields, setFields] = useState([{ id: 0, total: 0 }]); // Store fields with total
@@ -63,6 +65,7 @@ export default function Index() {
           ❌ Clear All
         </button>
       </div>
+      <Footer />
     </div>
   );
 }
