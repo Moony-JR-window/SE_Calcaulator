@@ -26,24 +26,24 @@ const Field: React.FC<FieldProps> = ({ onTotalChange, reset }) => {
   }, [number, percentage, onTotalChange]);
 
   return (
-    <div className="flex items-center gap-2 border p-3 rounded-lg bg-gray-50 shadow-sm">
+    <div className="flex items-center gap-2 border p-3 rounded-lg shadow-sm bg-whitetransition duration-300">
       <input
         type="text"
-        className="w-24 p-2 border rounded-md focus:ring-2 focus:ring-blue-300"
+        className="w-24 p-2 border rounded-md focus:ring-2 focus:ring-blue-300 bg-white dark:bg-gray-700 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition duration-300"
         placeholder="Number"
         value={number}
         onChange={(e) => setNumber(e.target.value === "" ? 0 : parseFloat(e.target.value))}
       />
-      <span className="text-lg">×</span>
+      <span className="text-lg text-gray-800 dark:text-gray-300">×</span>
       <input
         type="text"
-        className="w-16 p-2 border rounded-md focus:ring-2 focus:ring-blue-300"
+        className="w-16 p-2 border rounded-md focus:ring-2 focus:ring-blue-300 bg-white dark:bg-gray-700 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition duration-300"
         placeholder="%"
         value={percentage}
         onChange={(e) => setPercentage(e.target.value === "" ? 0 : parseFloat(e.target.value))}
       />
-      <span className="text-lg">%</span>
-      <span className="text-green-600 font-semibold ml-2">= {total.toFixed(1)}</span>
+      <span className="text-lg text-gray-800 dark:text-gray-300">%</span>
+      <span className="text-green-600 dark:text-green-400 font-semibold ml-2">= {total.toFixed(1)}</span>
     </div>
   );
 };
