@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { RiMoonFill, RiSunFill, RiDeleteBin6Line } from "react-icons/ri";
 import Field from "~/component/Field";
 import Footer from "~/component/Footer";
@@ -7,8 +7,8 @@ import Footer from "~/component/Footer";
 export default function Index() {
   const [fields, setFields] = useState([{ id: 0, total: 0 }]);
   const [finalTotal, setFinalTotal] = useState(0);
-  const [resetFields, setResetFields] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const [resetFields, setResetFields] = useState(false);  // Add reset state
 
   // Load Dark Mode Preference on Mount
   useEffect(() => {
@@ -29,7 +29,7 @@ export default function Index() {
 
   // Add New Field
   const addNewField = () => {
-    setFields([...fields, { id: fields.length, total: 0 }]);
+    setFields((prevFields) => [...prevFields, { id: prevFields.length, total: 0 }]);
   };
 
   // Delete Field
@@ -53,18 +53,20 @@ export default function Index() {
   };
 
   // Clear all fields
-  const clearFields = () => {
-    setResetFields(true);
-    setTimeout(() => setResetFields(false), 100);
+  const clearFields = useCallback(() => {
     setFields([{ id: 0, total: 0 }]);
     setFinalTotal(0);
-  };
+    setResetFields(true);  // Set reset to true
+
+    setTimeout(() => {
+      setResetFields(false); // Reset reset state after a short delay
+    }, 100);
+  }, []);
 
   return (
     <div
-      className={`${
-        darkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-900"
-      } w-full h-screen flex flex-col justify-start items-center p-6 transition duration-300`}
+      className={`${darkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-900"
+        } w-full h-screen flex flex-col justify-start items-center p-6 transition duration-300`}
     >
       {/* Toggle Dark Mode Button */}
       <button
@@ -76,9 +78,8 @@ export default function Index() {
 
       {/* Calculator Card */}
       <div
-        className={`${
-          darkMode ? "bg-gray-800" : "bg-white text-black"
-        } p-6 shadow-md rounded-lg w-96 flex flex-col gap-4`}
+        className={`${darkMode ? "bg-gray-800" : "bg-white text-black"
+          } p-6 shadow-md rounded-lg w-96 flex flex-col gap-4`}
       >
         <h1 className="text-xl font-semibold text-center">Calculator</h1>
 
@@ -86,8 +87,9 @@ export default function Index() {
           <div key={field.id} className="flex items-center gap-2">
             <Field
               onTotalChange={(total) => updateTotal(field.id, total)}
-              reset={resetFields}
+              reset={resetFields}  // Pass reset state here
             />
+
             {fields.length > 1 && (
               <button
                 onClick={() => deleteField(field.id)}
@@ -109,9 +111,8 @@ export default function Index() {
 
       {/* Final Total Card */}
       <div
-        className={`${
-          darkMode ? "bg-gray-800 text-white" : "bg-white text-black"
-        } mt-6 p-4 shadow-md rounded-lg w-96 flex flex-col items-center gap-2`}
+        className={`${darkMode ? "bg-gray-800 text-white" : "bg-white text-black"
+          } mt-6 p-4 shadow-md rounded-lg w-96 flex flex-col items-center gap-2`}
       >
         <h2 className="text-lg font-semibold">
           Final Total: <span className="text-blue-500">{finalTotal}</span>
