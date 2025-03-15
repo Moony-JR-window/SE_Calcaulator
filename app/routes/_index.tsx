@@ -8,7 +8,7 @@ import Footer from "~/component/Footer";
 export default function Index() {
   const [fields, setFields] = useState([{ id: 0, total: 0 }]);
   const [darkMode, setDarkMode] = useState(false);
-  const [finalTotal,setFinalTotal]= useState<Number>(0)
+  const [finalTotal,setFinalTotal]= useState<number>(0)
   const [resetFields, setResetFields] = useState(false);
   const [dragPositions, setDragPositions] = useState<{ [key: number]: number }>({});
   const [showDelete, setShowDelete] = useState<{ [key: number]: boolean }>({});
