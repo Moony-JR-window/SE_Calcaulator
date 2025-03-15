@@ -12,51 +12,51 @@ const ES_and_LS: React.FC = () => {
         setLS(ES + durationTime);
     }, [ES, durationTime]);
 
-    // Handle Duration Input Change
+    // Handle input changes
     const handleDurationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = parseInt(e.target.value) || 0;
         setDurationTime(value);
     };
 
-    // Handle ES Input Change
     const handleESChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = parseInt(e.target.value) || 0;
         setES(value);
     };
 
     return (
-        <div className="flex h-screen w-full items-center justify-center bg-gray-100">
-            <div className="bg-blue-400 text-black w-80 h-36 rounded-lg shadow-lg gap-5 flex flex-col items-center justify-center p-4">
+        <div className="flex h-full w-full items-center justify-center ">
+            <div className="bg-white text-gray-900 w-96 p-6 rounded-3xl shadow-2xl flex flex-col gap-6 border border-gray-200">
                 {/* Activity Name & Duration */}
-                <div className="flex justify-between w-full text-center ">
-                    <h1 className="w-10 font-bold">A</h1>
-                    <div>
+                <div className="flex justify-between items-center">
+                    <h1 className="text-2xl font-extrabold text-indigo-600">Activity A</h1>
+                    <div className="relative">
                         <input
                             type="text"
                             value={durationTime}
                             onChange={handleDurationChange}
-                            className="w-24 p-2 rounded-md bg-gray-300 outline-none  "
+                            className="w-28 p-3 border border-gray-300 rounded-lg focus:ring-4 focus:ring-indigo-400 outline-none text-lg font-semibold bg-gray-100"
                             min={0}
                         />
-                        <span className=" ml-[-40px] pointer-events-none ">Time</span>
+                        <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm font-medium">Time</span>
                     </div>
-
                 </div>
 
                 {/* ES & LS Fields */}
-                <div className="flex justify-between w-full mt-2 ">
-                    <div>
+                <div className="flex justify-between items-center">
+                    <div className="relative">
                         <input
                             type="text"
                             value={ES}
                             onChange={handleESChange}
-                            className="w-24 p-2 rounded-md bg-gray-300 outline-none  "
+                            className="w-28 p-3 border border-gray-300 rounded-lg focus:ring-4 focus:ring-indigo-400 outline-none text-lg font-semibold bg-gray-100"
                             min={0}
                         />
-                        <span className=" ml-[-30px] pointer-events-none ">ES</span>
+                        <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm font-medium">ES</span>
                     </div>
-
-                    <span className=" p-1 text-lg rounded-md text-center text-red-500 font-bold "> <label className="text-black font-serif ">{`This is => `}</label> {LS} LS </span>
+                    <span className="text-xl font-bold text-red-500 bg-red-100 px-4 py-2 rounded-lg shadow-sm">
+                        <label className="text-gray-700 mr-2">This is ⇒ </label>
+                        {LS} LS
+                    </span>
                 </div>
             </div>
         </div>
